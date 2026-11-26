@@ -198,7 +198,7 @@ $('addForm').onsubmit = async e => {
     if (!name) throw new Error('Bitte einen Namen eingeben.');
     let url = null; if (rawUrl) { const p = new URL(rawUrl); if (!['http:', 'https:'].includes(p.protocol)) throw new Error('Nur http:// und https:// sind erlaubt.'); url = p.href; }
     if (!url && !file) throw new Error('Bitte eine Webadresse oder eine Datei angeben.');
-    if (file && file.size > (CFG.MAX_FILE_MB || 50) * 1024 * 1024) throw new Error(`Die Datei ist größer als ${CFG.MAX_FILE_MB || 50} MB.`);
+    if (file && file.size > (CFG.MAX_FILE_MB || 50000) * 1024 * 1024) throw new Error(`Die Datei ist größer als ${CFG.MAX_FILE_MB || 50000} MB.`);
     $('addSubmit').disabled = true; msg.style.color = '#8fe5ff'; if (file) msg.textContent = 'Wird hochgeladen …';
     let filePath = null;
     if (file) {
