@@ -1,0 +1,37 @@
+name: Build Blue Moth (Android)
+on:
+  workflow_dispatch:
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      CREATOR_EMAIL: ${{ secrets.CREATOR_EMAIL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Android NDK installieren
+        run: |
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" --install "ndk;27.0.12077973" "platforms;android-34" "build-tools;34.0.0"
+          echo "NDK_HOME=$ANDROID_HOME/ndk/27.0.12077973" >> "$GITHUB_ENV"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: corepack enable && corepack prepare pnpm@9 --activate
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android
+      - run: pnpm install --no-frozen-lockfile
+      - run: node scripts/prepare-web.mjs
+      - run: pnpm tauri android init
+      - run: pnpm tauri android build --debug --apk --target aarch64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Blue-Moth-2.2-Android
+          path: src-tauri/gen/android/app/build/outputs/apk/**/*.apk
