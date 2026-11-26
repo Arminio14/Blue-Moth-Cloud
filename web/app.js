@@ -98,7 +98,7 @@ function creatorEmail() {
 async function creatorLogin(file) {
   needService();
   if (!CFG.CREATOR_KEY_HASH) throw new Error('Der Creator-Zugang ist nicht eingerichtet.');
-  if (!file || file.size > 500) throw new Error('Kein gültiger Creator-Schlüssel.');
+  if (!file || file.size > 5000) throw new Error('Kein gültiger Creator-Schlüssel.');
   const token = ((await file.text()).trim().split(/\s+/).pop()) || '';
   if (!same(await sha256hex(token), CFG.CREATOR_KEY_HASH)) throw new Error('Kein gültiger Creator-Schlüssel. Der Creator-Zugang ist nur für den Entwickler.');
   // Der geheime Schlüssel ist zugleich das Passwort des Creator-Kontos: ohne die Datei ist keine Anmeldung möglich.
