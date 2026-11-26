@@ -1,0 +1,46 @@
+<!doctype html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Blue Moth 2.2</title><link rel="stylesheet" href="style.css"></head><body class="locked">
+<div class="splash" id="splash"><img src="assets/splash.png" alt="Blue Moth"></div>
+
+<section class="auth" id="auth">
+  <div class="authCard">
+    <img src="assets/moth_icon.png" alt="" class="authLogo">
+    <h1>Blue <b>Moth</b></h1>
+    <span class="authVer">VERSION 2.2</span>
+    <p id="authHint" class="authHint">Melde dich an, um deine Bibliothek zu öffnen.</p>
+    <div class="authTabs"><button type="button" class="tab active" id="tabLogin">Anmelden</button><button type="button" class="tab" id="tabRegister">Registrieren</button></div>
+    <form id="authForm" autocomplete="on" novalidate>
+      <label>E-Mail<input id="authEmail" type="email" required autocomplete="email" inputmode="email" autocapitalize="none" placeholder="name@email.com"></label>
+      <label>Passwort<input id="authPass" type="password" required minlength="6" autocomplete="current-password" placeholder="Mindestens 6 Zeichen"></label>
+      <label id="pass2Row" hidden>Passwort wiederholen<input id="authPass2" type="password" autocomplete="new-password"></label>
+      <p id="authMsg" class="authMsg" role="alert"></p>
+      <button class="primary wide" id="authSubmit">Anmelden</button>
+    </form>
+    <div class="or"><span>oder</span></div>
+    <button type="button" class="secondary wide" id="creatorBtn">👑 Creator-Zugang</button>
+    <input type="file" id="creatorInput" hidden>
+    <p class="authNote">Deine Bibliothek ist auf allen Geräten verfügbar, auf denen du dich anmeldest.</p>
+  </div>
+</section>
+
+<header><div class="brand"><img src="assets/moth_icon.png" alt=""><span>Blue <b>Moth</b></span><span class="ver">2.2</span></div>
+  <div class="userbox"><span id="userName"></span><button class="secondary small" id="logout">Abmelden</button></div></header>
+<main>
+<section class="hero"><div><p class="eyebrow">YOUR PERSONAL APP SPACE</p><h1>Alles an <span>einem Ort.</span></h1><p>Web-Apps, Programme, Spiele und Dateien auf allen deinen Geräten.</p></div><img src="assets/moth_icon.png" alt="Blue Moth"></section>
+<section class="toolbar"><div><h2>Meine Sammlung</h2><p id="count">0 Einträge</p></div><div class="actions"><button id="addItem" class="primary">＋ Eintrag hinzufügen</button></div></section>
+<nav><button class="tab active" data-filter="all">Alle</button><button class="tab" data-filter="web">Web-Apps</button><button class="tab" data-filter="app">Programme</button><button class="tab" data-filter="pcgame">PC-Spiele</button><button class="tab" data-filter="game">Spiele</button><button class="tab" data-filter="file">Dateien</button></nav>
+<section id="grid" class="grid"></section><p id="empty" class="empty">Noch nichts hinzugefügt. Nutze den Button oben.</p>
+<p class="warning"><b>Sicherheit:</b> Programme (EXE/APK) werden nur gespeichert und bereitgestellt, nicht automatisch ausgeführt. Lade nur Dateien aus vertrauenswürdigen Quellen herunter und starte sie bewusst.</p>
+<p class="note">Verwende nur Spiele und Dateien, die du rechtmäßig nutzen darfst.</p>
+</main>
+
+<dialog id="addDialog"><form id="addForm"><h2>Eintrag hinzufügen</h2>
+<label>Name<input id="itemName" required maxlength="60" placeholder="z. B. Wordle"></label>
+<label>Typ<select id="itemKind"><option value="web">Web-App</option><option value="app">Programm</option><option value="pcgame">PC-Spiel</option><option value="game">Spiel</option><option value="file">Datei</option></select></label>
+<label>Webadresse (optional)<input id="itemUrl" type="url" placeholder="https://example.com"></label>
+<label>Datei (optional)<input id="itemFile" type="file"></label>
+<p id="addMsg" class="authMsg"></p>
+<div class="dialogActions"><button type="button" class="secondary close">Abbrechen</button><button class="primary" id="addSubmit">Hinzufügen</button></div></form></dialog>
+
+<div id="toast" role="status"></div>
+<footer>BLUE MOTH 2.2 <span>✦</span> YOUR APPS, YOUR SPACE</footer>
+<script src="config.js"></script><script src="vendor/supabase.js"></script><script src="app.js"></script></body></html>

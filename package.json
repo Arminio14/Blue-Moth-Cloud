@@ -1,0 +1,21 @@
+{
+  "name": "blue-moth",
+  "private": true,
+  "version": "2.2.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "prepare:web": "node scripts/prepare-web.mjs",
+    "dev": "node scripts/prepare-web.mjs && tauri dev",
+    "build": "node scripts/prepare-web.mjs && tauri build",
+    "android:init": "tauri android init",
+    "android:dev": "node scripts/prepare-web.mjs && tauri android dev",
+    "android:build": "node scripts/prepare-web.mjs && tauri android build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.45.4"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.5"
+  }
+}
